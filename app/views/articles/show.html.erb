@@ -1,7 +1,13 @@
 <h1><%= @article.title %></h1>
-
 <p><%= @article.body %></p>
 
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li>
+    <%= form_with model: @article, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "inline" do %>
+      <%= submit_tag "Destroy", data: { disable_with: "Deleting..." } %>
+    <% end %>
+  </li>
 </ul>
+
+

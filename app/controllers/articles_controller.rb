@@ -35,11 +35,22 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    respond_to do |format|
+      format.html { redirect_to root_path, status: :see_other }
+      format.turbo_stream # Optional if you want to handle Turbo Streams dynamically
+    end
+  end
+  
+
   private
     def article_params
       params.require(:article).permit(:title, :body)
     end
 end
+
 
 
 
